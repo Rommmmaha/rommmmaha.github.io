@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="icon" href="https://avatars.githubusercontent.com/u/53641123">
+    <link rel="icon" type="icon" href="media/favicon.png">
     <title>Rommmmaha</title>
     <meta property="og:title" content="Rommmmaha">
     <meta property="og:description" content="Kordyban Roman
     10d/12m/2005y
     Ukraine/Chernivtsi">
     <meta property="og:url" content="https://rommmmaha.github.io/">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/53641123">
+    <meta property="og:image" content="https://rommmmaha.github.io/media/avatar.png">
     <meta name="theme-color" data-react-helmet="true" content="#FFFFFF">
     <style>
         body {
@@ -22,7 +22,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #111;
+            background-color: #000;
+            background-image: url('media/background.mp4');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .container {
@@ -35,15 +38,16 @@
             position: absolute;
             width: 360px;
             height: 360px;
+            left: -180px;
+            top: -180px;
             border-radius: 50%;
+            transition: transform 0.3s ease;
             object-fit: cover;
             box-shadow: 0px 0px 100px rgba(255, 255, 255, 0.8);
-            transform: translate(-50%, -50%);
-            z-index: -1;
         }
 
         .center-image:hover {
-            transform: scale(2);
+            transform: scale(1.1);
         }
 
         .link-item {
@@ -60,35 +64,42 @@
             transform: scale(2);
         }
 
-        .link-item img {
+        .link-item>img {
             position: absolute;
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
         }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: blur(30px) brightness(50%);
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <img src="https://avatars.githubusercontent.com/u/53641123" class="center-image">
+        <a href="https://dub.sh/rommmmaha"><img src="media/avatar.png" class="center-image"></a>
     </div>
+    <video src="media/background.mp4" class="background" autoplay loop muted playsinline></video>
     <script>
-        function addLink(url, imageUrl, scale = 1) {
+        function addLink(url, imageUrl, style = "") {
             const container = document.querySelector('.container');
-
             const link = document.createElement('a');
+            const img = document.createElement('img');
             link.href = url;
             link.className = 'link-item';
-
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.style = "transform: scale(" + scale + ");";
+            img.src = 'media/' + imageUrl + '.png';
             link.appendChild(img);
-
             const radius = 300;
-
             const links = [...container.querySelectorAll('.link-item'), link];
             links.forEach((link, index) => {
                 const currentAngle = index * (360 / links.length) * Math.PI / 180;
@@ -98,20 +109,19 @@
                 link.style.left = `${x}px`;
                 link.style.top = `${y}px`;
             });
-
             container.appendChild(link);
         }
-
-        addLink('https://discord.com/users/rommmmaha', 'https://play-lh.googleusercontent.com/0oO5sAneb9lJP6l8c6DH4aj6f85qNpplQVHmPmbbBxAukDnlO7DarDW0b-kEIHa8SQ');
-        addLink('https://t.me/rommmmaha', 'https://play-lh.googleusercontent.com/ZU9cSsyIJZo6Oy7HTHiEPwZg0m2Crep-d5ZrfajqtsH-qgUXSqKpNA2FpPDTn-7qA5Q', 1.25);
-        addLink('https://tiktok.com/rommmmaha', 'https://play-lh.googleusercontent.com/LdBITldj-tJxqLm-CsWSbnt4BMo2gk53cgM7mWIL-zn44m1ywLyQgxRsHKqp8r0qceXs');
-        addLink('https://youtube.com/@rommmmaha', 'https://play-lh.googleusercontent.com/6am0i3walYwNLc08QOOhRJttQENNGkhlKajXSERf3JnPVRQczIyxw2w3DxeMRTOSdsY');
-        addLink('https://twitch.tv/rommmmaha/', 'https://play-lh.googleusercontent.com/QLQzL-MXtxKEDlbhrQCDw-REiDsA9glUH4m16syfar_KVLRXlzOhN7tmAceiPerv4Jg');
-        addLink('https://x.com/rommmmaha', 'https://play-lh.googleusercontent.com/A-Rnrh0J7iKmABskTonqFAANRLGTGUg_nuE4PEMYwJavL3nPt5uWsU2WO_DSgV_mOOM');
-        addLink('https://reddit.com/user/Rommmmaha/', 'https://play-lh.googleusercontent.com/6Bexlvoh-v0z0YnxzXo_U5e5A6UdAETe8pIYyQ2E2KfhVf2BK5J83pFXKZbt125FHHQ');
-        addLink('https://github.com/rommmmaha/', 'https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU', 1.38);
-        addLink('https://steamcommunity.com/profiles/76561199095711243', 'https://play-lh.googleusercontent.com/52_DMY5417awaEgJf3_9mWgEuO2t1JfkGab8kM-LD6l5u6cGm_1-GsoQ_IyWFHdbkA', 1.09);
+        addLink('https://x.com/rommmmaha', 'x');
+        addLink('https://tiktok.com/rommmmaha', 'tiktok');
+        addLink('https://github.com/rommmmaha/', 'github', "transform:scale(1.38);filter:invert(1)");
+        addLink('https://steamcommunity.com/profiles/76561199095711243', 'steam', "transform:scale(1.09);filter:");
+        addLink('https://reddit.com/user/Rommmmaha/', 'reddit');
+        addLink('https://discord.com/users/rommmmaha', 'discord');
+        addLink('https://t.me/rommmmaha', 'telegram', "transform:scale(1.25);filter:brightness(60%)");
+        addLink('https://twitch.tv/rommmmaha/', 'twitch', "filter:invert(1)brightness(60%)");
+        addLink('https://youtube.com/@rommmmaha', 'youtube');
     </script>
+
 </body>
 
 </html>
