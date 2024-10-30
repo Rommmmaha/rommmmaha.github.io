@@ -30,52 +30,50 @@
 
         .container {
             position: relative;
-            width: 0px;
-            height: 0px;
+        }
+
+        .container>a {
+            position: absolute;
+            transition: all 0.3s ease;
+            border-radius: 50%;
         }
 
         .center-image {
-            position: absolute;
-            width: 360px;
-            height: 360px;
-            left: -180px;
-            top: -180px;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            object-fit: cover;
-            box-shadow: 0px 0px 100px rgba(255, 255, 255, 0.8);
+            width: 400px;
+            height: 400px;
+            left: -200px;
+            top: -200px;
+            box-shadow: 0px 0px 300px rgba(255, 255, 255, 0.8);
+        }
+
+        .center-image img {
+            background-color: rgba(255, 255, 255, 0.2);
         }
 
         .center-image:hover {
             transform: scale(1.1);
+            box-shadow: 0px 0px 300px rgba(255, 255, 255, 1);
         }
 
         .link-item {
-            position: absolute;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            box-shadow: 0 0px 50px rgba(255, 255, 255, 0.5);
+            width: 100px;
+            height: 100px;
+            box-shadow: 0px 0px 100px rgba(0, 0, 0, 1);
         }
 
         .link-item:hover {
-            transform: scale(2);
+            transform: scale(1.8);
+            box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.8);
         }
 
-        .link-item>img {
-            position: absolute;
+        img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            object-fit: cover;
         }
 
         .background {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -87,7 +85,7 @@
 
 <body>
     <div class="container">
-        <a href="https://dub.sh/rommmmaha"><img src="media/avatar.png" class="center-image"></a>
+        <a class="center-image" href="https://dub.sh/rommmmaha"><img src="media/avatar.png"></a>
     </div>
     <video src="media/background.mp4" class="background" autoplay loop muted playsinline></video>
     <script>
@@ -103,8 +101,8 @@
             const links = [...container.querySelectorAll('.link-item'), link];
             links.forEach((link, index) => {
                 const currentAngle = index * (360 / links.length) * Math.PI / 180;
-                const x = Math.cos(currentAngle) * radius - 45;
-                const y = Math.sin(currentAngle) * radius - 45;
+                const x = Math.cos(currentAngle) * radius - 50;
+                const y = Math.sin(currentAngle) * radius - 50;
 
                 link.style.left = `${x}px`;
                 link.style.top = `${y}px`;
@@ -112,13 +110,13 @@
             container.appendChild(link);
         }
         addLink('https://x.com/rommmmaha', 'x');
-        addLink('https://tiktok.com/rommmmaha', 'tiktok');
-        addLink('https://github.com/rommmmaha/', 'github', "transform:scale(1.38);filter:invert(1)");
-        addLink('https://steamcommunity.com/profiles/76561199095711243', 'steam', "transform:scale(1.09);filter:");
-        addLink('https://reddit.com/user/Rommmmaha/', 'reddit');
+        addLink('https://tiktok.com/@rommmmaha', 'tiktok');
+        addLink('https://github.com/rommmmaha', 'github');
+        addLink('https://steamcommunity.com/profiles/76561199095711243', 'steam');
+        addLink('https://reddit.com/user/Rommmmaha', 'reddit');
         addLink('https://discord.com/users/rommmmaha', 'discord');
-        addLink('https://t.me/rommmmaha', 'telegram', "transform:scale(1.25);filter:brightness(60%)");
-        addLink('https://twitch.tv/rommmmaha/', 'twitch', "filter:invert(1)brightness(60%)");
+        addLink('https://t.me/rommmmaha', 'telegram');
+        addLink('https://twitch.tv/rommmmaha', 'twitch');
         addLink('https://youtube.com/@rommmmaha', 'youtube');
     </script>
 
