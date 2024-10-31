@@ -15,17 +15,14 @@
     <meta name="theme-color" data-react-helmet="true" content="#FFFFFF">
     <style>
         body {
-            overflow: hidden;
-            margin: 0;
             width: 100vw;
             height: 100vh;
+            margin: 0;
             display: flex;
+            overflow: hidden;
             justify-content: center;
             align-items: center;
             background-color: #000;
-            background-image: url('media/background.mp4');
-            background-size: cover;
-            background-repeat: no-repeat;
         }
 
         .container {
@@ -73,9 +70,9 @@
         }
 
         .background {
-            position: fixed;
             width: 100%;
             height: 100%;
+            position: fixed;
             object-fit: cover;
             z-index: -1;
             filter: blur(30px) brightness(50%);
@@ -103,7 +100,6 @@
                 const currentAngle = index * (360 / links.length) * Math.PI / 180;
                 const x = Math.cos(currentAngle) * radius - 50;
                 const y = Math.sin(currentAngle) * radius - 50;
-
                 link.style.left = `${x}px`;
                 link.style.top = `${y}px`;
             });
@@ -119,7 +115,6 @@
         addLink('https://twitch.tv/rommmmaha', 'twitch');
         addLink('https://youtube.com/@rommmmaha', 'youtube');
     </script>
-
 </body>
 
 </html>
