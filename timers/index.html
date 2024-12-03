@@ -120,14 +120,11 @@
             timersContainer.appendChild(createTimerHTML(index, config));
         });
 
-        function getNextUpdateTime(day, hour) {
+        function getNextUpdateTime(targetDay, targetHour) {
             const now = new Date();
-            const nextUpdate = new Date(now);
-
-            nextUpdate.setUTCHours(hour, 0, 0, 0);
-            nextUpdate.setDate(nextUpdate.getDate() + ((day - now.getUTCDay() + 7) % 7));
-            if (nextUpdate <= now) nextUpdate.setDate(nextUpdate.getDate() + 7);
-
+            const nowUTC = now.getTime();
+            const nextUpdate = new Date(nowUTC + ((targetDay - now.getUTCDay() + 7) % 7 || 7) * 86400000);
+            nextUpdate.setUTCHours(targetHour, 0, 0, 0);
             return nextUpdate;
         }
 
@@ -153,6 +150,7 @@
             });
         }
 
+        updateTimers();
         setInterval(updateTimers, 1000);
     </script>
 </body>
