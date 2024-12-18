@@ -110,7 +110,11 @@
         timersConfig.forEach((config, index) => { timersContainer.appendChild(createTimerHTML(index, config)); });
 
         function getRemainingTime(targetDay, targetHour) {
-            return Math.floor((3 + targetDay + targetHour / 24) * (24 * 60 * 60) - ((new Date()).getTime() / 1000) % (7 * 24 * 60 * 60));
+            const week = 7 * 24 * 60 * 60;
+            const timeStart = ((3 + targetDay) * 24 + targetHour) * 60 * 60
+            const timeNow = Math.floor((new Date()).getTime() / 1000) % week;
+            let remainingTime = (timeStart - timeNow + week) % week;
+            return remainingTime;
         }
 
         function updateTimers() {
@@ -127,7 +131,7 @@
             });
         }
         updateTimers();
-        setInterval(updateTimers, 1000);
+        setInterval(updateTimers, 200);
     </script>
 </body>
 
