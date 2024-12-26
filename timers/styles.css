@@ -1,0 +1,73 @@
+.timer-section,
+body,
+html {
+    overflow: hidden;
+    display: flex
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #222;
+    color: #fff
+}
+
+#timers-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+.timer-section {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: #333
+}
+
+.divider,
+.progress-bar {
+    position: absolute;
+    top: 0;
+    height: 100%
+}
+
+.progress-bar {
+    left: 0;
+    z-index: 1;
+    opacity: .5
+}
+
+.timer-content {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+
+.timer-label {
+    font-size: 1.2em;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+.timer-display {
+    font-size: 2em;
+    font-weight: 700
+}
+
+.divider {
+    width: 2px;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 1
+}
