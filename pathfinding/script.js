@@ -1,4 +1,3 @@
-
 class Grid {
     constructor(rows, cols) {
         this.rows = rows;
@@ -21,6 +20,22 @@ class Grid {
                 if (this.grid[i][j] === 4 || this.grid[i][j] === 5) {
                     this.grid[i][j] = 0;
                     table.rows[i].cells[j].classList.remove('visited', 'path');
+                }
+            }
+        }
+    }
+    invertGrid() {
+        if (this.isAnimating) return;
+        const table = document.getElementById("board");
+        if (!table) return;
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                if (this.grid[i][j] === 3) {
+                    this.grid[i][j] = 0;
+                    table.rows[i].cells[j].classList.remove('wall');
+                } else if (this.grid[i][j] === 0) {
+                    this.grid[i][j] = 3;
+                    table.rows[i].cells[j].classList.add('wall');
                 }
             }
         }
@@ -189,7 +204,7 @@ class Grid {
 }
 let isMouseDown = false;
 const board = new Grid(
-    Math.floor(window.innerHeight / 32 - 3),
+    Math.floor(window.innerHeight / 32 - 2),
     Math.floor(window.innerWidth / 32 - 2)
 );
 board.generateGrid();
@@ -203,6 +218,7 @@ document.addEventListener('mouseup', (event) => {
 document.getElementById('board').addEventListener('mouseover', handleBoardInteraction);
 document.getElementById('board').addEventListener('mousedown', handleBoardInteraction);
 function handleBoardInteraction(event) {
+    if (board.isAnimating) return;
     if (event.type === 'mouseover' && !isMouseDown || !event.target.matches('td')) return;
     const cell = event.target;
     const i = parseInt(cell.dataset.row);
@@ -215,9 +231,11 @@ function handleBoardInteraction(event) {
 }
 const startButton1 = document.querySelector("body > nav > ul.left > li:nth-child(1)");
 const startButton2 = document.querySelector("body > nav > ul.left > li:nth-child(2)");
-const clearPathButton = document.querySelector("body > nav > ul.right > li:nth-child(1)");
-const clearBoardButton = document.querySelector("body > nav > ul.right > li:nth-child(2)");
-if (startButton1) startButton1.addEventListener('click', () => board.dijkstra());
-if (startButton2) startButton2.addEventListener('click', () => board.aStar());
-if (clearPathButton) clearPathButton.addEventListener('click', () => board.clearVisited());
-if (clearBoardButton) clearBoardButton.addEventListener('click', () => { board.generateGrid(); board.writeGrid(); });
+const invertButton = document.querySelector("body > nav > ul.right > li:nth-child(1)");
+const clearPathButton = document.querySelector("body > nav > ul.right > li:nth-child(2)");
+const clearBoardButton = document.querySelector("body > nav > ul.right > li:nth-child(3)");
+startButton1.addEventListener('click', () => board.dijkstra());
+startButton2.addEventListener('click', () => board.aStar());
+invertButton.addEventListener('click', () => board.invertGrid());
+clearPathButton.addEventListener('click', () => board.clearVisited());
+clearBoardButton.addEventListener('click', () => { board.generateGrid(); board.writeGrid(); });

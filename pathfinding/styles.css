@@ -39,7 +39,7 @@ nav ul.right {
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 5px;
 }
 
 nav ul li a {
@@ -49,10 +49,11 @@ nav ul li a {
     padding: 5px 10px;
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 5px;
+    background-color: #222;
 }
 
 nav ul li a:hover {
-    background-color: #166;
+    background-color: #666;
 }
 
 /* GRID */
