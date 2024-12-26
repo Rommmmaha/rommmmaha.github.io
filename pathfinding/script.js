@@ -26,6 +26,7 @@ class Grid {
     }
     invertGrid() {
         if (this.isAnimating) return;
+        this.clearVisited();
         const table = document.getElementById("board");
         if (!table) return;
         for (let i = 0; i < this.rows; i++) {
